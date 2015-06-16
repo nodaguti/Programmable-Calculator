@@ -1,0 +1,38 @@
+body{
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+
+.build-in-list{
+    overflow: auto !important;
+    max-height: 300px;
+}
+
+#parse-result{
+    height: 100%;
+}
+
+.results-container{
+    margin-top: 2em;
+}
+
+.row{
+    margin-bottom: 1.5em;
+}
+
+.controls-container{
+    text-align: center;
+    margin: 0 auto;
+}
+
+td.controls-container > button{
+    margin: 0 5px;
+}
+
+.tooltip-inner{
+    text-align: left !important;
+}
+
+.dialog-load-file-input{
+    display: none !important;
+}

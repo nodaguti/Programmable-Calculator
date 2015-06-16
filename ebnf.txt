@@ -1,0 +1,44 @@
+number = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+alphabet = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_";
+
+real_number = number [ "." number { number } ];
+relational_operator = "==" | "!=" | ">=" | "<=" | ">" | "<";
+logical_operator = "&&" | "||";
+arith_operator = "+" | "-" | "/" | "*" | "%" | "^";
+
+program = { program_source };
+program_source = { program_body };
+program_body = { block };
+
+block = if_block | while_block | function_declaration | line | comment;
+line = ( statement | expression ) [ ";" ];
+statement = variable_assignment | return_statement;
+
+function_declaration = "function" function_identifier "(" [ function_parameter ] "){" program_body "}";
+function_identifier = identifier;
+function_parameter = variable_identifier { "," variable_identifier };
+function_call = "call " function_identifier { " " expression };
+
+variable_assignment = variable_identifier "=" expression;
+variable_identifier = identifier;
+
+if_block = if_true_block [ if_else_block ];
+if_true_block = "if(" boolean_expression "){" program_body "}";
+if_else_block = "else{" program_body "}";
+
+while_block = "while(" boolean_expression "){" program_body "}";
+
+return_statement = "return" expression;
+
+expression = simple_expression | boolean_expression;
+
+boolean_expression = binary_boolean_expression { logical_operator binary_boolean_expression } | "(" boolean_expression ")";
+binary_boolean_expression = simple_expression { relational_operator simple_expression } | "(" binary_boolean_expression ")";
+
+simple_expression = primary | "-" simple_expression | simple_expression "!" | simple_expression arith_operator simple_expression | "(" simple_expression ")";
+
+primary = function_call | variable_identifier | real_number;
+
+identifier = alphabet { alphabet | number };
+
+comment = "/*" { alphabet | number } "*/" | "//" { alphabet | number };

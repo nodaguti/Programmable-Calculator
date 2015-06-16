@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>Programmable Calculator</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/jqtree.css" />
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Programmable Calculator</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Build-in Funcs/Consts
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu build-in-list" aria-labelledby="dropdownMenu" role="menu">
+                            <li><a href="#">
+                                <h5>Functions</h5>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Args</th>
+                                            <th>Def.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>abs</td>
+                                            <td>x</td>
+                                            <td>x の絶対値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>acos</td>
+                                            <td>x</td>
+                                            <td>arccos(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>acosh</td>
+                                            <td>x</td>
+                                            <td>arccosh(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>asin</td>
+                                            <td>x</td>
+                                            <td>arcsin(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>asinh</td>
+                                            <td>x</td>
+                                            <td>arcsinh(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>atan</td>
+                                            <td>x</td>
+                                            <td>arctan(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>atanh</td>
+                                            <td>x</td>
+                                            <td>arctanh(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>atan2</td>
+                                            <td>y, x</td>
+                                            <td>正の x 軸から (x, y) までの角度を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>cbrt</td>
+                                            <td>x</td>
+                                            <td>x の3乗根の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ceil</td>
+                                            <td>x</td>
+                                            <td>x を切り上げた値(天井関数の値)を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>clz32</td>
+                                            <td>x</td>
+                                            <td>32bit 符号なし整数 x のbit表現で 0 がいくつ続いているかを返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>cos</td>
+                                            <td>x</td>
+                                            <td>cos(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>cosh</td>
+                                            <td>x</td>
+                                            <td>cosh(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>expm1</td>
+                                            <td>x</td>
+                                            <td>exp(x) - 1 の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>floor</td>
+                                            <td>x</td>
+                                            <td>x を切り捨てた値(床関数の値)を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>fround</td>
+                                            <td>x</td>
+                                            <td>x に最も近い単精度浮動小数の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>hypot</td>
+                                            <td>[x[,y[,...]]]</td>
+                                            <td>0個以上の引数すべての相乗平均を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>imul</td>
+                                            <td>a, b</td>
+                                            <td>32bit整数として a * b を計算した結果を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>log</td>
+                                            <td>x</td>
+                                            <td>自然対数 log(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>log1p</td>
+                                            <td>x</td>
+                                            <td>自然対数 log(x+1) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>log10</td>
+                                            <td>x</td>
+                                            <td>常用対数 ln(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>log2</td>
+                                            <td>x</td>
+                                            <td>2を底とする対数 log(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>max</td>
+                                            <td>x[,y[,...]]</td>
+                                            <td>与えられた引数のうち最大の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>min</td>
+                                            <td>x[,y[,...]]</td>
+                                            <td>与えられた引数のうち最小の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>pow</td>
+                                            <td>x, y</td>
+                                            <td>x^y の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>random</td>
+                                            <td>x</td>
+                                            <td>0 から n までの擬似乱数の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>round</td>
+                                            <td>x</td>
+                                            <td>x に最も近い整数の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sign</td>
+                                            <td>x</td>
+                                            <td>x の符号を表す値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sin</td>
+                                            <td>x</td>
+                                            <td>sin(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sinh</td>
+                                            <td>x</td>
+                                            <td>sinh(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>sqrt</td>
+                                            <td>x</td>
+                                            <td>x の平方根の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>tan</td>
+                                            <td>x</td>
+                                            <td>tan(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>tanh</td>
+                                            <td>x</td>
+                                            <td>tanh(x) の値を返す</td>
+                                        </tr>
+                                        <tr>
+                                            <td>trunc</td>
+                                            <td>x</td>
+                                            <td>x の小数部分を切り捨てた値を返す</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h5>Constants</h5>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>E</td>
+                                            <td>自然対数の底</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LN2</td>
+                                            <td>自然対数において log(2)の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LN10</td>
+                                            <td>自然対数において log(10)の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LOG2E</td>
+                                            <td>底が2の対数において log(E) の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LOG10E</td>
+                                            <td>底が10の対数において log(E) の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>PI</td>
+                                            <td>円周率の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SQRT1_2</td>
+                                            <td>1/2 の平方根の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SQRT2</td>
+                                            <td>2の平方根の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>EPSILON</td>
+                                            <td>計算機が扱うことのできる絶対値が最小の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MAX_VALUE</td>
+                                            <td>計算機が扱うことのできる最大の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MIN_VALUE</td>
+                                            <td>計算機が扱うことのできる最小の値</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NEGATIVE_INFINITY</td>
+                                            <td>正の無限大 (正のオーバーフローを表す)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>POSITIVE_INFINITY</td>
+                                            <td>負の無限大 (負のオーバーフローを表す)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOW</td>
+                                            <td>実行時点のUNIX時</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Examples
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu" role="menu">
+                            <li><a href="#"><p><b>ファイルをダウンロードし, ブラウザにドラッグ・アンド・ドロップして読み込んで下さい.</b></p></a></li>
+                            <li><a href="geometricProgression.env" target="_blank">等比数列の和の計算</a></li>
+                            <li><a href="factorial.env" target="_blank">階乗の計算</a></li>
+                            <li><a href="montecalro.env" target="_blank">モンテカルロ法による円周率の計算</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Credit
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu" role="menu">
+                            <li><a href="#">
+                                Programmable Calculator 0.1<br />
+                                Copyright &copy; 2014 Language Processor Group #1. All rights reserved.
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <h4>Source</h4>
+                    <textarea class="form-control"
+                              id="source" rows="15"
+                              placeholder="Source Code to Calculate"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="controls-container">
+                        <button type="button" class="btn btn-primary btn-run">Run</button>
+                        <button type="button" class="btn btn-warning btn-clear">Clear Source Code</button>
+                        <button type="button" class="btn btn-danger btn-reset">Reset Env</button>
+                        <button type="button" class="btn btn-success btn-load">Load Env</button>
+                        <button type="button" class="btn btn-success btn-save">Save Env</button>
+                    </div>
+                </div>
+
+                <div class="results-container row">
+                    <h4>Results</h4>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-md-offset-1">
+                <div class="row">
+                    <h5>Parse Result</h5>
+                    <pre id="parse-result"></pre>
+                </div>
+
+                <div class="row">
+                    <h5>Variable Table</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="variable-table-content"></tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <h5>Function Table</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Arguments</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="function-table-content"></tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <h5>Syntax Tree</h5>
+                    <div class="parse-tree-container"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="dialog-load">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">環境読み込み</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        以下より環境設定ファイル (programmable-calculator-xxxx.env, xxxx には数字が入ります)
+                        を選択するか, ウィンドウにドロップして下さい.
+                    </p>
+                    <input type="file" class="dialog-load-file-input"
+                           value="ファイルを選択" />
+                    <a href="#" class="btn btn-primary btn-load">ファイルを選択</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/lib/es6-shim.js"></script>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/bootbox.min.js"></script>
+    <script src="js/lib/tree.jquery.js"></script>
+
+    <script src="js/Predefined.js"></script>
+    <script src="js/Machine.js"></script>
+    <script src="js/Node.js"></script>
+    <script src="js/parser.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-12135563-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+</body>
+</html>
